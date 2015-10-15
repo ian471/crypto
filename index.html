@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="aes.js">/* AES JavaScript implementation */</script>
+    <script src="aes-ctr.js">/* AES Counter Mode implementation */</script>
+    <script>
+      function onload() {
+        document.getElementById("encrypt").onclick = (function() {
+          document.getElementById("encrypted").value = Aes.Ctr.encrypt(document.getElementById("plain").value, document.getElementById("password").value, 256);
+        });
+        document.getElementById("decrypt").onclick = function() {
+          document.getElementById("plain").value = Aes.Ctr.decrypt(document.getElementById("encrypted").value, document.getElementById("password").value, 256);
+        };
+      }
+    </script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:500,400' rel='stylesheet' type='text/css'>
+    <style>
+      body {
+        margin:0;
+      }
+      body, button {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+      }
+      button {
+        font-size:14pt;
+        font-weight: 500;
+        border-radius:2px;
+        border-style:none;
+        color:#FFFFFF;
+        background-color:#388E3C;
+        height:36px;
+        padding:0 16px;
+        margin:0 8px;
+      }
+      button:hover {
+        box-shadow:0 2px 2px rgba(0,0,0,0.5);
+      }
+      h1 {
+        color:#FFFFFF;
+        background-color:#388E3C;
+        font-size:24px;
+        font-weight: 400;
+        margin:0;
+        padding:0;
+        height:56px;
+      }
+      div, h1 {
+        text-align:center;
+        width:100%;
+      }
+      * + div {
+        margin-top:20px;
+      }
+      textarea {
+        width:800px;
+        height:200px;
+        padding:0;
+      }
+    </style>
+  </head>
+  <body onload="onload();">
+    <h1>AES Encrypt/Decryptor</h1>
+    <div>
+      <input type="password" id="password" placeholder="password" />
+    </div>
+    <div>
+      <textarea id="plain"></textarea>
+    </div>
+    <div>
+    <button id="encrypt">&#8681; ENCRYPT</button>
+    <button id="decrypt">&#8679; DECRYPT</button>
+    </div>
+    <div>
+    <textarea id="encrypted"></textarea>
+    </div>
+  </body>
+</html>
